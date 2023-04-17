@@ -21,6 +21,13 @@ if (app.Environment.IsDevelopment())
         c.SpecUrl = "/swagger/v1/swagger.json";
     });
 }
+else
+{
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+
+    var url = new[] { string.Concat("http://0.0.0.0:", port) };
+    builder.WebHost.UseUrls(url);
+}
 
 app.UseHttpsRedirection();
 
